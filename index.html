@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Fry dance</title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="main.css?v=1">
+	</head>
+	<body>
+		<div id="creators">
+			<p>
+				Once derped by Synonymous !SYNONymDuY</br>
+				Then remade from scratch by AMM !AMM.FiWTOc</br>
+				Now reenvisioned by <a href="http://mal1t1a.ca" style="color:white">Mal1t1a</a> as HTML5
+			</p>
+		</div>
+		<div id="controls">
+			<div id="btnVolume" class="btn">Volume: Unmuted</div>
+			<div id="sldVolume" class="slider"><div class="slider-background"></div><span class="slider-text">50%</span></div>
+			<div id="btnYT" class="btn">Toggle Video</div>
+			<div id="btnLoop" class="btn">Loop: One</div>
+			<div id="btnShuffle" class="btn">Shuffle: Off</div>
+			<span class="title">Total:</span><span class="time">0s</span>
+		</div>
+		<div id="songSelector">
+			<a href="https://www.youtube.com/watch?v=wj23_nDFSfE" data-navtitle="Do The Hustle" data-title="Van McCoy - Do The Hustle" data-start="37" data-end="54.05"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=e8-Qp-YF9dw" data-title="Umbrella" data-title="Rihanna - Umbrella (Jody Den Broeder Lush Radio Mix)" data-start="79.93" data-end="93.80"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=0y-r4KybaXA" data-navtitle="Come Into My Dreams" data-title="DJ Weaver - Come Into My Dreams" data-start="170" data-end="180.6"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=-XlFmponAgg" data-navtitle="Am I Loud Enough" data-title="Bis - Am I Loud Enough" data-start="92.5" data-end="105.5"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=rgwmnCMpGKw" data-navtitle="The Other Side" data-title="Pendulum - The Other Side" data-start="96.8" data-end="111"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=E6aMkYnfJ_s" data-navtitle="Power of Sound" data-title="Ace - Power of Sound" data-start="154.4" data-end="166.93"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=XQRnWYVmIT4" data-navtitle="We Interrupt This Program" data-title="Coburn - We Interrupt This Program (Jean Claude Ades Remix)" data-start="236.78" data-end="240.37"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=CS9xII__jf0" data-navtitle="Where the Partys at" data-title="Tonite Only - Where The Party's At" data-start="318.7" data-end="322.3"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			
+			<a href="https://www.youtube.com/watch?v=2xJWQPdG7jE" data-title="Get down on it" data-start="58.8" data-end="78.7"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=p2k8x58nNfY" data-title="Round & Round" data-start="98" data-end="117"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=Kq4OtRsdXls" data-title="Destination Unknown" data-start="49.6" data-end="59.72"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=fzQ6gRAEoy0" data-title="Shelter" data-start="126.3" data-end="145.5"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+			<a href="https://www.youtube.com/watch?v=j0h2u87JwyA" data-navtitle="Finale" data-title="Madeon - Finale" data-start="21" data-end="42"><span class="title"></span><span class="time"></span><div class="timespan"></div></a>
+		</div>
+		<div id="videosToLoad">
+			<video id="vidIntro" width="958" height="720" preload="none">
+				<source src="FryDance_Intro.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' >
+			</video>
+			<video loop id="vidLoop" width="958" height="720" preload="none">
+				<source src="FryDance_Loop.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' >
+			</video>
+		</div>
+		<div id="content">
+			<div id="ytVideo1"></div>
+			<div id="ytVideo2"></div>
+		</div>
+		<script type="text/javascript" src="FryDance.js?v=1"></script>
+	</body>
+</html>

@@ -1,0 +1,172 @@
+html, body
+{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background-color: black;
+	font-family: Arial;
+	min-width: 705px;
+}
+video, #ytVideo1
+{
+	display: none;
+	box-sizing: border-box;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#ytVideo1, #ytVideo2, #videosToLoad
+{
+	display: none;
+	position: absolute;
+	z-index: 1;
+}
+#creators
+{
+	position: absolute;
+	top: 0px;
+	left: 305px;
+	height: 65px;
+	width: calc(100% - 305px);
+	color: #848484;
+	min-width: 400px;
+}
+#creators p
+{
+	margin: 0;
+}
+#creators a
+{
+	color: #848484;
+	text-decoration: none;
+}
+#controls
+{
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	color: white;
+	width: 300px;
+	height: 200px;
+}
+.btn
+{
+    padding: 5px;
+    background-color: #3e3e3e;
+    border-radius: 6px;
+    text-align: center;
+    margin: 0 auto;
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.btn:nth-of-type(4), .btn:nth-of-type(5)
+{
+    margin-top: 10px;
+}
+#controls span.title, #controls span.time
+{
+	position: absolute;
+	bottom: 0px;
+	left: 35px;
+}
+#songSelector
+{
+	position: absolute;
+	top: 200px;
+	left: 0px;
+	width: 300px;
+	background-color: black;
+	height: calc(100% - 200px);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#songSelector a
+{
+	display: block;
+	color: #848484;
+	padding: 5px;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	text-decoration: none;
+	position: relative;
+}
+#songSelector a:hover
+{
+	color: #d4d4d4;
+}
+#songSelector a.active
+{
+	color: white;
+}
+#songSelector a:not(:first-child)
+{
+	//border-top: 1px dashed white;
+}
+span.time
+{
+	float: right;
+	right: 5px;
+	left: initial!important;
+}
+div.timespan
+{
+	position: absolute;
+	border-bottom: 1px solid white;
+	width: 0%;
+	bottom: 0px;
+	-webkit-transition-property: width; /* Safari */
+    -webkit-transition-duration: 2s; /* Safari */
+    transition-property: width;
+    transition-duration: 2s;
+}
+#content
+{
+	position: absolute;
+	left: 305px;
+	top: 65px;
+	width: calc(100% - 305px);
+	height: calc(100% - 65px);
+	overflow: hidden;
+	border-radius: 75px;
+	min-width: 400px;
+}
+
+.slider {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 20px;
+	cursor: col-resize;
+}
+
+span.slider-text
+{
+    position: absolute;
+    left: 0px;
+    top: 12px;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.slider-background {
+    display: block;
+    background-color: green;
+    width: 50%;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+}
