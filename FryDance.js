@@ -51,6 +51,21 @@ var yttWnd;
 var finalehWnd;
 var finalehWnd2;
 var isToggling = false;
+
+var LoopType = {
+	None: 0,
+	One: 1,
+	All: 2
+};
+
+var currentLoopType = LoopType.One;
+
+var ShuffleType = {
+	Off: 0,
+	On: 1
+};
+var currentShuffleType = ShuffleType.Off;
+
 Number.prototype.pad = function(size) {
   var s = String(this);
   while (s.length < (size || 2)) {s = "0" + s;}
@@ -151,9 +166,10 @@ function onSongSelectClicked(e, prevhist)
 	timeListened = 0;
 	clearInterval(ythWnd);
 	$("a.active").removeClass("active");
+	cIndex = Number($(this).data("id")-1);
 	lastVideo = $(this);
 	document.title = lastVideo.data("title") + " - Fry Dance";
-	if (typeof prevhist === "undefined")
+	if (typeof prevhist === "undefined" && document.origin != "null")
 		window.history.pushState({"html": $("html").html(), "pageTitle": document.title},"", "http://Fry.Dance/" + lastVideo.data("id").pad(2));
 	lastVideo.addClass("active");
 	if (!isNaN($(this).data("listened")))
@@ -193,6 +209,7 @@ function onSlideEvent(e)
 				$("#ytVideo1").stop();
 				$("#btnVolume").html("Volume: Unmuted");
 				var newVolume = ((1 - (($("#sldVolume").width() - (e.type == "touchmove" ? e.originalEvent.touches[0].clientX : e.offsetX)) / $("#sldVolume").width()))*100).clamp(0, 100);
+				$("#vidIntro").prop("volume", newVolume / 100);
 				player.setVolume(newVolume);
 				$("#sldVolume").data("volume", newVolume);
 				$("#sldVolume").children(".slider-background").css("width", newVolume + "%");
@@ -279,6 +296,25 @@ function OnDocumentReady(e)
 		$(this).on("loadeddata.frydance", function(){videosLoaded++;console.log("loaded",el.children("source").attr("src"));if(videosLoaded>=videosToLoad&&window.YTLoaded===true)OnVideosLoaded(e);});
 		$(this).attr("preload", "auto");
 	});
+	$("#btnLoop").on("click.frydance", function(e)
+	{
+		e.preventDefault();
+		currentLoopType += 1;
+		if (currentLoopType > LoopType.All)
+			currentLoopType = 0;
+		for (var i in LoopType)	
+			if (LoopType[i] == currentLoopType) $(this).html("Loop: " + i);
+	});
+	$("#btnShuffle").on("click.frydance", function(e)
+	{
+		e.preventDefault();
+		if (currentShuffleType == ShuffleType.On)
+			currentShuffleType = ShuffleType.Off;	
+		else
+			currentShuffleType = ShuffleType.On;
+		for (var i in ShuffleType)	
+			if (ShuffleType[i] == currentShuffleType) $(this).html("Shuffle: " + i);
+	});
 }
 function parseSeconds(seconds)
 {
@@ -318,7 +354,18 @@ function checkVideoTime()
 	var start = $("#songSelector a.active").data("start");
 	var end = $("#songSelector a.active").data("end");
 	if (player.getCurrentTime() >= end)
-		player.seekTo(start);
+	{
+		if (currentLoopType == LoopType.One)
+			player.seekTo(start);
+		else if (currentLoopType == LoopType.All)
+		{
+			clearInterval(yttWnd);
+			cIndex++;
+			if (cIndex >= $("#songSelector a").length)
+				cIndex = 0;
+			$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
+		}
+	}	
 }
 $(document).ready(OnDocumentReady);
 function OnYoutubeAPIReady(e)
@@ -375,8 +422,21 @@ function OnYoutubeAPIReady(e)
 					clearInterval(yttWnd);
 					isToggling = false;
 					UpdatePlayTime();
-					lastVideo.click();
+					if (currentLoopType == LoopType.One)
+						lastVideo.click();
 					//playYoutubeVideo("2xJWQPdG7jE");
+				}
+			},
+			'onError': function(event)
+			{
+				console.log(event);
+				if (currentLoopType == LoopType.All)
+				{
+					clearInterval(yttWnd);
+					cIndex++;
+					if (cIndex >= $("#songSelector a").length)
+						cIndex = 0;
+					$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
 				}
 			}
 		}
@@ -384,6 +444,7 @@ function OnYoutubeAPIReady(e)
 }
 function OnWindowReady(e)
 {
+	$("#vidIntro").prop("volume", 0.5);
 	console.log("Begin loading YouTube API");
 	window.onYouTubeIframeAPIReady = OnYoutubeAPIReady;
 	var tag = document.createElement('script');

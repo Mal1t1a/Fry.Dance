@@ -50,7 +50,7 @@ video, #ytVideo1
 	box-sizing: border-box;
 	color: white;
 	width: 300px;
-	height: 200px;
+	height: 160px;
 }
 .btn
 {
@@ -80,7 +80,7 @@ video, #ytVideo1
 #songSelector
 {
 	position: absolute;
-	top: 200px;
+	top: 160px;
 	left: 0px;
 	width: 300px;
 	background-color: black;
@@ -169,4 +169,9 @@ span.slider-text
     height: 20px;
     position: absolute;
     top: 10px;
+}
+
+#btnShuffle
+{
+	display: none;
 }
