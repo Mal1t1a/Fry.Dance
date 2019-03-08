@@ -1,0 +1,277 @@
+html, body
+{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background-color: black;
+	font-family: Arial;
+	min-width: 705px;
+}
+
+::-webkit-scrollbar {
+    background-color: black;
+    width: 10px;
+    color: limegreen;
+    border: 1px solid limegreen;
+}
+
+::-webkit-scrollbar-track {
+    background-color: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: hsla(120, 61%, 5%, 1); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: limegreen;
+}
+
+::-webkit-scrollbar-button:hover {
+    background-color: limegreen;
+}
+
+::-webkit-scrollbar-button {
+    background-color: hsla(120, 61%, 10%, 1);
+}
+
+form {
+    background-color: white;
+    color: black;
+    width: 500px;
+    padding: 10px;
+}
+
+label {
+    display: block;
+    width: 100%;
+    padding: 2px;
+}
+
+input[type="text"] {
+    float: right;
+    width: 100%;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+span.title {
+    width: calc(100% - 69px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    white-space: pre;
+}
+
+#promptPlayback
+{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0,0,0,0.69);
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50vh;
+  cursor: pointer;
+  z-index: 3;
+}
+video, #ytVideo1
+{
+	display: none;
+	box-sizing: border-box;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#ytVideo1, #ytVideo2, #videosToLoad
+{
+	display: none;
+	position: absolute;
+	z-index: 1;
+}
+#creators
+{
+	position: absolute;
+	top: 0px;
+	left: 305px;
+	height: 65px;
+	width: calc(100% - 305px);
+  color: #196719;
+	min-width: 400px;
+}
+#creators p
+{
+	margin: 0;
+}
+#creators a
+{
+	color: limegreen;
+	text-decoration: none;
+}
+#controls
+{
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	color: limegreen;
+	width: 300px;
+	height: auto;
+  padding-bottom: 25px;
+}
+.btn
+{
+    padding: 5px;
+    background-color: #000000;
+    border: 1px solid limegreen;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn:hover 
+{
+  background-color: #0a290a;
+}
+
+.btn:nth-of-type(4), .btn:nth-of-type(5), .btn:nth-of-type(6)
+{
+    margin-top: 10px;
+}
+#controls span.title, #controls span.time
+{
+	position: absolute;
+	bottom: 0px;
+	left: 35px;
+}
+#songSelector
+{
+	width: 300px;
+	height: calc(100% - 245px);
+	background-color: black;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#songSelector a
+{
+	display: block;
+	color: #196719;
+	padding: 5px;
+	padding-top: 10px;
+	padding-bottom: 0px;
+	text-decoration: none;
+	position: relative;
+}
+#songSelector a:hover
+{
+	color: limegreen;
+}
+#songSelector a.active
+{
+	color: limegreen;
+}
+#songSelector a:not(:first-child)
+{
+	/*border-top: 1px dashed white;*/
+}
+span.time
+{
+	float: right;
+	right: 5px;
+	left: initial!important;
+}
+div.timespan
+{
+	position: absolute;
+	border-bottom: 1px solid limegreen;
+	width: 0%;
+	bottom: 0px;
+	-webkit-transition-property: width; /* Safari */
+    -webkit-transition-duration: 2s; /* Safari */
+    transition-property: width;
+    transition-duration: 2s;
+}
+#content
+{
+	position: absolute;
+	left: 305px;
+	top: 65px;
+	width: calc(100% - 305px);
+	height: calc(100% - 65px);
+	overflow: hidden;
+	border-radius: 75px;
+	min-width: 400px;
+}
+
+.slider {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 20px;
+	cursor: col-resize;
+}
+
+span.slider-text
+{
+    position: absolute;
+    left: 0px;
+    top: 12px;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.slider-background {
+    display: block;
+    background-color: green;
+    width: 50%;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+}
+
+#cm
+{
+    cursor: pointer;
+    position: absolute;
+    left: 126px;
+    top: 251px;
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(152, 152, 152);
+    box-shadow: rgba(0, 0, 0, 0.62) 2px 2px 2px 1px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    z-index: 100;
+}
+
+.cmi
+{
+  background-color: transparent;
+  padding: 3px;
+  padding-left: 25px;
+}
+
+.cmi:hover
+{
+    background-color: rgb(230, 230, 230);
+}
