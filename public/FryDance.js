@@ -1,6 +1,7 @@
 console.log("Initalizing Fry Dance", location.href);
-Number.prototype.clamp = function(min, max) {
-  return Math.min(Math.max(this, min), max);
+Number.prototype.clamp = function (min, max)
+{
+	return Math.min(Math.max(this, min), max);
 };
 var cIndex = 0;
 if (location.pathname != "/")
@@ -8,13 +9,13 @@ if (location.pathname != "/")
 	var args = location.pathname.split("/");
 	if (!isNaN(args[1]))
 	{
-		cIndex = Number(args[1])-1;
+		cIndex = Number(args[1]) - 1;
 		if (cIndex < 0)
 			cIndex = 0;
 	}
 	else
 	{
-		$("#songSelector a").each(function(ei, el)
+		$("#songSelector a").each(function (ei, el)
 		{
 			if ($(el).data("name") == unescape(args[1]))
 				cIndex = ei;
@@ -22,14 +23,14 @@ if (location.pathname != "/")
 	}
 }
 
-window.onpopstate = function(event)
+window.onpopstate = function (event)
 {
 	if (location.pathname != "/")
 	{
 		var args = location.pathname.split("/");
 		if (!isNaN(args[1]))
 		{
-			cIndex = Number(args[1])-1;
+			cIndex = Number(args[1]) - 1;
 			if (cIndex < 0)
 				cIndex = 0;
 		}
@@ -67,10 +68,11 @@ var ShuffleType = {
 };
 var currentShuffleType = ShuffleType.Off;
 
-Number.prototype.pad = function(size) {
-  var s = String(this);
-  while (s.length < (size || 2)) {s = "0" + s;}
-  return s;
+Number.prototype.pad = function (size)
+{
+	var s = String(this);
+	while (s.length < (size || 2)) { s = "0" + s; }
+	return s;
 };
 function playYoutubeVideo(vidid, start, end)
 {
@@ -87,7 +89,7 @@ function playYoutubeVideo(vidid, start, end)
 			var dTime = 0;
 			var cRot = 45 + (45 * Math.round(Math.random() * 7));
 			clearInterval(finalehWnd);
-			finalehWnd = setInterval(function(e)
+			finalehWnd = setInterval(function (e)
 			{
 				if (player.getPlayerState() == 1)
 				{
@@ -98,10 +100,10 @@ function playYoutubeVideo(vidid, start, end)
 							isToggling = true;
 							//$("#content").css("filter", "hue-rotate(" + Math.round(Math.random() * 360) + "deg)");
 							$("#content").css("filter", "hue-rotate(" + cRot + "deg)");
-							finalehWnd2 = setInterval(function()
+							finalehWnd2 = setInterval(function ()
 							{
 								cTime += (1 / timings[dTime]);
-								if (cTime >= dTime+1)
+								if (cTime >= dTime + 1)
 								{
 									dTime++;
 									console.log(dTime, timings.length);
@@ -112,10 +114,10 @@ function playYoutubeVideo(vidid, start, end)
 									}
 									//$("#content").css("filter", "hue-rotate(" + Math.round(Math.random() * 360) + "deg)");
 									cRot += 45;
-									if (cRot > 360)cRot = (cRot - 360);
+									if (cRot > 360) cRot = (cRot - 360);
 									$("#content").css("filter", "hue-rotate(" + cRot + "deg)");
 								}
-								
+
 							}, 150);
 						}
 					}
@@ -128,7 +130,7 @@ function playYoutubeVideo(vidid, start, end)
 					}
 				}
 			}, 10);
-		break;
+			break;
 		default:
 			cTime = 0;
 			dTime = 0;
@@ -137,7 +139,7 @@ function playYoutubeVideo(vidid, start, end)
 			clearInterval(finalehWnd2);
 			if ($("#content").attr("style"))
 				$("#content").removeAttr("style");
-		break;
+			break;
 	}
 	player.loadVideoById({
 		'videoId': vidid,
@@ -151,15 +153,15 @@ function playYoutubeVideo(vidid, start, end)
 function OnVideosLoaded(e)
 {
 	$("#vidIntro").off("ended.frydance");
-	$("#vidIntro").on("ended.frydance", function(){$("#videosToLoad").append($("#vidIntro"));$("#vidIntro").get(0).pause();$("#vidIntro").hide();$("#content").append($("#vidLoop"));$("#vidLoop").show();console.log("Playing video:",$("#vidLoop source").attr("src"));$("#vidLoop").get(0).play();$("#songSelector a:eq(" + cIndex + ")").click();});
-	console.log("Playing video:",$("#vidIntro source").attr("src"));
+	$("#vidIntro").on("ended.frydance", function () { $("#videosToLoad").append($("#vidIntro")); $("#vidIntro").get(0).pause(); $("#vidIntro").hide(); $("#content").append($("#vidLoop")); $("#vidLoop").show(); console.log("Playing video:", $("#vidLoop source").attr("src")); $("#vidLoop").get(0).play(); $("#songSelector a:eq(" + cIndex + ")").click(); });
+	console.log("Playing video:", $("#vidIntro source").attr("src"));
 	$("#content").append($("#vidIntro"));
-  $("#promptPlayback").on("click", function(e)
-  {
-    $("#promptPlayback").remove();
-    $("#vidIntro").show();
-    $("#vidIntro").get(0).play();
-  });
+	$("#promptPlayback").on("click", function (e)
+	{
+		$("#promptPlayback").remove();
+		$("#vidIntro").show();
+		$("#vidIntro").get(0).play();
+	});
 }
 
 function onSongSelectClicked(e, prevhist)
@@ -167,13 +169,13 @@ function onSongSelectClicked(e, prevhist)
 	e.preventDefault();
 	if ($("#vidIntro").is(":visible"))
 	{
-		cIndex = Number($(this).data("id")-1);
+		cIndex = Number($(this).data("id") - 1);
 		return;
 	}
 	timeListened = 0;
 	clearInterval(ythWnd);
 	$("a.active").removeClass("active");
-	cIndex = Number($(this).data("id")-1);
+	cIndex = Number($(this).data("id") - 1);
 	lastVideo = $(this);
 	document.title = lastVideo.data("name") + " - Fry Dance";
 	//if (typeof prevhist === "undefined" && document.origin != "null")
@@ -203,170 +205,170 @@ function onSongSelectClicked(e, prevhist)
 
 function onSongSelectContextMenu(e)
 {
-  e.preventDefault();
-  var i = $(this).data("id");
-  $(document).off("mousedown.cm");
-  if ($("#cm").length > 0)
-  {
-    $("#cm").remove();
-  }
+	e.preventDefault();
+	var i = $(this).data("id");
+	$(document).off("mousedown.cm");
+	if ($("#cm").length > 0)
+	{
+		$("#cm").remove();
+	}
 
-  var newDiv = $("<div></div>");
-  newDiv.attr("id", "cm");
-  newDiv.css({
-    "left": e.pageX,
-    "top": e.pageY
-  });
+	var newDiv = $("<div></div>");
+	newDiv.attr("id", "cm");
+	newDiv.css({
+		"left": e.pageX,
+		"top": e.pageY
+	});
 
-  if (typeof $(this).data("rowid") !== "undefined")
-  {
-    var btnEdit = $("<div></div>");
-    btnEdit.addClass("cmi");
-    btnEdit.text("Edit");
-    btnEdit.on("click", function(eee)
-    {
-      $(document).off("mousedown.cm");
-      $("#cm").remove();
-      var toEdit = $("#songSelector a").filter(function() {return $(this).data("id") != undefined && $(this).data("id") == i;});
-      var newDiv = $("<div></div>");
-      newDiv.css({
-        "position": "fixed",
-        "left": "0px",
-        "top": "0px",
-        "width": "100%",
-        "height": "100%",
-        "background-color": "rgba(0,0,0,0.69)",
-        "z-index": 1,
-        "cursor": "pointer"
-      });
+	if (typeof $(this).data("rowid") !== "undefined")
+	{
+		var btnEdit = $("<div></div>");
+		btnEdit.addClass("cmi");
+		btnEdit.text("Edit");
+		btnEdit.on("click", function (eee)
+		{
+			$(document).off("mousedown.cm");
+			$("#cm").remove();
+			var toEdit = $("#songSelector a").filter(function () { return $(this).data("id") != undefined && $(this).data("id") == i; });
+			var newDiv = $("<div></div>");
+			newDiv.css({
+				"position": "fixed",
+				"left": "0px",
+				"top": "0px",
+				"width": "100%",
+				"height": "100%",
+				"background-color": "rgba(0,0,0,0.69)",
+				"z-index": 1,
+				"cursor": "pointer"
+			});
 
-      var newForm = $("<div></div>");
-      newForm.css({
-        "position": "fixed",
-        "top": "calc(50% - 250px)",
-        "left": "calc(50% - 250px)",
-        "margin": "0 auto",
-        "z-index": 2
-      });
-      newForm.load("/addSong", function()
-      {
-        newForm.find("input").each(function(eeei, eeel)
-        {
-          if ($(eeel).attr("name") == "url")
-            $(eeel).val(toEdit.attr("href"));
-          else if ($(eeel).attr("type") != "submit")
-            $(eeel).val(toEdit.data($(eeel).attr("name")));
-        });
-        newForm.find("input[type=\"submit\"]").val("Edit Song");
-        newForm.find("input[type=\"submit\"]").on("click", function(ee)
-        {
-          ee.preventDefault();
-          var data = {nav: "", name:"", url:"", start:0, end:0};
-          for (var x in data)
-          {
-            //var v = prompt(x, data[x]);
-            var v = newForm.find("input[name=\"" + x + "\"]").val();
-            if (v == null)
-              return;
-            if (v != "")
-              data[x] = v;
-          }
-          data.rowid = toEdit.data("rowid");
+			var newForm = $("<div></div>");
+			newForm.css({
+				"position": "fixed",
+				"top": "calc(50% - 250px)",
+				"left": "calc(50% - 250px)",
+				"margin": "0 auto",
+				"z-index": 2
+			});
+			newForm.load("/addSong", function ()
+			{
+				newForm.find("input").each(function (eeei, eeel)
+				{
+					if ($(eeel).attr("name") == "url")
+						$(eeel).val(toEdit.attr("href"));
+					else if ($(eeel).attr("type") != "submit")
+						$(eeel).val(toEdit.data($(eeel).attr("name")));
+				});
+				newForm.find("input[type=\"submit\"]").val("Edit Song");
+				newForm.find("input[type=\"submit\"]").on("click", function (ee)
+				{
+					ee.preventDefault();
+					var data = { nav: "", name: "", url: "", start: 0, end: 0 };
+					for (var x in data)
+					{
+						//var v = prompt(x, data[x]);
+						var v = newForm.find("input[name=\"" + x + "\"]").val();
+						if (v == null)
+							return;
+						if (v != "")
+							data[x] = v;
+					}
+					data.rowid = toEdit.data("rowid");
 
-          $.post("/editSong", data, function(rData)
-          {
-            //good job
-            var jObj = JSON.parse(rData);
-            //jObj.nav, jObj.name, jObj.url, jObj.start, jObj.end
-            toEdit.attr("href", jObj.url);
-            toEdit.data("name", jObj.name);
-            toEdit.data("nav", jObj.nav);
-            toEdit.data("start", jObj.start);
-            toEdit.data("end", jObj.end);
-            toEdit.children("span.title").html(toEdit.data("id").pad(2) + " - " + (toEdit.data("nav") ? toEdit.data("nav") : toEdit.data("name")));
-          });
+					$.post("/editSong", data, function (rData)
+					{
+						//good job
+						var jObj = JSON.parse(rData);
+						//jObj.nav, jObj.name, jObj.url, jObj.start, jObj.end
+						toEdit.attr("href", jObj.url);
+						toEdit.data("name", jObj.name);
+						toEdit.data("nav", jObj.nav);
+						toEdit.data("start", jObj.start);
+						toEdit.data("end", jObj.end);
+						toEdit.children("span.title").html(toEdit.data("id").pad(2) + " - " + (toEdit.data("nav") ? toEdit.data("nav") : toEdit.data("name")));
+					});
 
-          newForm.remove();
-          newDiv.remove();
-        });
-      });
+					newForm.remove();
+					newDiv.remove();
+				});
+			});
 
-      newDiv.on("click", function(ee)
-      {
-        newForm.remove();
-        newDiv.remove();
-      });
-      $("body").append(newDiv);
-      $("body").append(newForm);
-    });
-    newDiv.append(btnEdit);
+			newDiv.on("click", function (ee)
+			{
+				newForm.remove();
+				newDiv.remove();
+			});
+			$("body").append(newDiv);
+			$("body").append(newForm);
+		});
+		newDiv.append(btnEdit);
 
-    var btnDelete = $("<div></div>");
-    btnDelete.addClass("cmi");
-    btnDelete.text("Delete");
-    btnDelete.on("click", function(eee)
-    {
-      $(document).off("mousedown.cm");
-      $("#cm").remove();
-      var toEdit = $("#songSelector a").filter(function() {return $(this).data("id") != undefined && $(this).data("id") == i;});
-      var c = confirm("Are you sure you want to delete the song '" + toEdit.children("span.title").text() + "'?");
-      if (c)
-      {
-        $.post("/deleteSong", {rowid: toEdit.data("rowid")}, function()
-        {
-          toEdit.remove();
-        });
-      }
-    });
-    newDiv.append(btnDelete);
-  }
+		var btnDelete = $("<div></div>");
+		btnDelete.addClass("cmi");
+		btnDelete.text("Delete");
+		btnDelete.on("click", function (eee)
+		{
+			$(document).off("mousedown.cm");
+			$("#cm").remove();
+			var toEdit = $("#songSelector a").filter(function () { return $(this).data("id") != undefined && $(this).data("id") == i; });
+			var c = confirm("Are you sure you want to delete the song '" + toEdit.children("span.title").text() + "'?");
+			if (c)
+			{
+				$.post("/deleteSong", { rowid: toEdit.data("rowid") }, function ()
+				{
+					toEdit.remove();
+				});
+			}
+		});
+		newDiv.append(btnDelete);
+	}
 
-  var btnReport = $("<div></div>");
-  btnReport.addClass("cmi");
-  btnReport.text("Report");
-  btnReport.on("click", function(eee)
-  {
-    $(document).off("mousedown.cm");
-    $("#cm").remove();
-  });
-  newDiv.append(btnReport);
+	var btnReport = $("<div></div>");
+	btnReport.addClass("cmi");
+	btnReport.text("Report");
+	btnReport.on("click", function (eee)
+	{
+		$(document).off("mousedown.cm");
+		$("#cm").remove();
+	});
+	newDiv.append(btnReport);
 
-  var btnSauce = $("<div></div>");
-  btnSauce.addClass("cmi");
-  btnSauce.html("Sauce: <br>" + $(this).data("name"));
-  btnSauce.data("href", $(this).attr("href"));
-  btnSauce.on("click", function(eee)
-  {
-    window.open($(this).data("href"), "_blank"); 
-    $(document).off("mousedown.cm");
-    $("#cm").remove();
-  });
-  newDiv.append(btnSauce);
+	var btnSauce = $("<div></div>");
+	btnSauce.addClass("cmi");
+	btnSauce.html("Sauce: <br>" + $(this).data("name"));
+	btnSauce.data("href", $(this).attr("href"));
+	btnSauce.on("click", function (eee)
+	{
+		window.open($(this).data("href"), "_blank");
+		$(document).off("mousedown.cm");
+		$("#cm").remove();
+	});
+	newDiv.append(btnSauce);
 
-  $("body").append(newDiv);
-  
-  if (newDiv.offset().top + newDiv.height() + 5 >= $(window).height())
-  {
-    newDiv.css("top", $(window).height() - newDiv.height() - 5);
-  }
-  
-  $(document).on("mousedown.cm", function(eee)
-  {
-    if (eee.target && $(eee.target).hasClass("cmi") && eee.button == 2)
-    {
-      $(document).off("mousedown.cm");
-      $("#cm").remove();
-    }
-    else if (eee.target && $(eee.target).hasClass("cmi"))
-    {
-      //allow it
-    }
-    else
-    {
-      $(document).off("mousedown.cm");
-      $("#cm").remove();
-    }
-  });
+	$("body").append(newDiv);
+
+	if (newDiv.offset().top + newDiv.height() + 5 >= $(window).height())
+	{
+		newDiv.css("top", $(window).height() - newDiv.height() - 5);
+	}
+
+	$(document).on("mousedown.cm", function (eee)
+	{
+		if (eee.target && $(eee.target).hasClass("cmi") && eee.button == 2)
+		{
+			$(document).off("mousedown.cm");
+			$("#cm").remove();
+		}
+		else if (eee.target && $(eee.target).hasClass("cmi"))
+		{
+			//allow it
+		}
+		else
+		{
+			$(document).off("mousedown.cm");
+			$("#cm").remove();
+		}
+	});
 }
 
 function onSlideEvent(e)
@@ -377,28 +379,28 @@ function onSlideEvent(e)
 		case "touchstart":
 		case "mousedown":
 			$("#sldVolume").data("dragging", true);
-		break;
+			break;
 		case "touchmove":
 		case "mousemove":
 			if ($("#sldVolume").data("dragging") == true)
 			{
 				$("#ytVideo1").stop();
 				$("#btnVolume").html("Volume: Unmuted");
-				var newVolume = ((1 - (($("#sldVolume").width() - (e.type == "touchmove" ? e.originalEvent.touches[0].clientX : e.offsetX)) / $("#sldVolume").width()))*100).clamp(0, 100);
+				var newVolume = ((1 - (($("#sldVolume").width() - (e.type == "touchmove" ? e.originalEvent.touches[0].clientX : e.offsetX)) / $("#sldVolume").width())) * 100).clamp(0, 100);
 				$("#vidIntro").prop("volume", newVolume / 100);
 				player.setVolume(newVolume);
 				$("#sldVolume").data("volume", newVolume);
 				$("#sldVolume").children(".slider-background").css("width", newVolume + "%");
 				$("#sldVolume").children(".slider-text").html(Math.round(newVolume) + "%");
 			}
-		break;
+			break;
 		case "touchend":
 		case "mouseup":
 			$("#sldVolume").data("dragging", false);
-		break;
+			break;
 		default:
-		
-		break;
+
+			break;
 	}
 }
 function onDocumentEvent(e)
@@ -408,10 +410,10 @@ function onDocumentEvent(e)
 		case "mousemove":
 			e.offsetX = e.pageX;
 			onSlideEvent(e);
-		break;
+			break;
 		case "mouseup":
 			$("#sldVolume").data("dragging", false);
-		break;
+			break;
 	}
 }
 
@@ -419,143 +421,154 @@ function OnDocumentReady(e)
 {
 	$("#sldVolume").on("mousedown mousemove mouseup touchstart touchmove touchend", onSlideEvent);
 	$(document).on("mousemove mouseup", onDocumentEvent);
-  $("#btnSubmit").on("click.frydance", function(e)
-  {
-    var newDiv = $("<div></div>");
-    newDiv.css({
-      "position": "fixed",
-      "left": "0px",
-      "top": "0px",
-      "width": "100%",
-      "height": "100%",
-      "background-color": "rgba(0,0,0,0.69)",
-      "z-index": 1,
-      "cursor": "pointer"
-    });
-    
-    var newForm = $("<div></div>");
-    newForm.css({
-      "position": "fixed",
-      "top": "calc(50% - 250px)",
-      "left": "calc(50% - 250px)",
-      "margin": "0 auto",
-      "z-index": 2
-    });
-    newForm.load("/addSong", function()
-    {
-      $("input[type=\"submit\"]").on("click", function(e)
-      {
-        e.preventDefault();
-        
-        var data = {nav: "",name:"",url:"",start:0,end:0};
-        for (var x in data)
-        {
-          //var v = prompt(x, data[x]);
-          var v = $("input[name=\"" + x + "\"]").val();
-          if (v == null)
-            return;
-          if (v != "")
-            data[x] = v;
-        }
-        $.post("/addSong", data, function(rData)
-        {
-          //good job
-          var jObj = JSON.parse(rData);
-          console.log(jObj);
-          addSong(jObj.rowid, jObj.nav, jObj.name, jObj.url, jObj.start, jObj.end);
-        });
-        
-        newForm.remove();
-        newDiv.remove();
-      });
-    });
-    
-    newDiv.on("click", function(e)
-    {
-      newForm.remove();
-      newDiv.remove();
-    });
-    $("body").append(newDiv);
-    $("body").append(newForm);
-  });
-	$("#btnVolume").on("click.frydance", function(e)
+	
+	$("#btnSubmit").on("click.frydance", function (e)
+	{
+		var newDiv = $("<div></div>");
+		newDiv.css({
+			"position": "fixed",
+			"left": "0px",
+			"top": "0px",
+			"width": "100%",
+			"height": "100%",
+			"background-color": "rgba(0,0,0,0.69)",
+			"z-index": 1,
+			"cursor": "pointer"
+		});
+
+		var newForm = $("<div></div>");
+		newForm.css({
+			"position": "fixed",
+			"top": "calc(50% - 250px)",
+			"left": "calc(50% - 250px)",
+			"margin": "0 auto",
+			"z-index": 2
+		});
+		newForm.load("/addSong", function ()
+		{
+			$("input[type=\"submit\"]").on("click", function (e)
+			{
+				e.preventDefault();
+
+				var data = { nav: "", name: "", url: "", start: 0, end: 0 };
+				for (var x in data)
+				{
+					//var v = prompt(x, data[x]);
+					var v = $("input[name=\"" + x + "\"]").val();
+					if (v == null)
+						return;
+					if (v != "")
+						data[x] = v;
+				}
+				$.post("/addSong", data, function (rData)
+				{
+					//good job
+					var jObj = JSON.parse(rData);
+					console.log(jObj);
+					addSong(jObj.rowid, jObj.nav, jObj.name, jObj.url, jObj.start, jObj.end);
+				});
+
+				newForm.remove();
+				newDiv.remove();
+			});
+		});
+
+		newDiv.on("click", function (e)
+		{
+			newForm.remove();
+			newDiv.remove();
+		});
+		$("body").append(newDiv);
+		$("body").append(newForm);
+	});
+
+	$("#btnVolume").on("click.frydance", function (e)
 	{
 		e.preventDefault();
 		if (player.getVolume() > 0)
 		{
 			$("#sldVolume .slider-background").stop();
-			$("#sldVolume .slider-background").animate({"width": "0%"}, {progress: function(a, p)
-			{
-				$("#sldVolume .slider-text").html(Math.round($("#sldVolume").data("volume") - (p*$("#sldVolume").data("volume"))) + "%");
-				player.setVolume(Math.round($("#sldVolume").data("volume") - (p*$("#sldVolume").data("volume"))));
-			}, duration: 250});
+			$("#sldVolume .slider-background").animate({ "width": "0%" }, {
+				progress: function (a, p)
+				{
+					$("#sldVolume .slider-text").html(Math.round($("#sldVolume").data("volume") - (p * $("#sldVolume").data("volume"))) + "%");
+					player.setVolume(Math.round($("#sldVolume").data("volume") - (p * $("#sldVolume").data("volume"))));
+				}, duration: 250
+			});
 			$(this).html("Volume: Muted");
 		}
 		else
 		{
 			$("#sldVolume .slider-background").stop();
-			$("#sldVolume .slider-background").animate({"width": $("#sldVolume").data("volume") + "%"}, {progress: function(a, p)
-			{
-				$("#sldVolume .slider-text").html(Math.round(p*$("#sldVolume").data("volume")) + "%");
-				player.setVolume(Math.round(p*$("#sldVolume").data("volume")));
-			}, duration: 250});
+			$("#sldVolume .slider-background").animate({ "width": $("#sldVolume").data("volume") + "%" }, {
+				progress: function (a, p)
+				{
+					$("#sldVolume .slider-text").html(Math.round(p * $("#sldVolume").data("volume")) + "%");
+					player.setVolume(Math.round(p * $("#sldVolume").data("volume")));
+				}, duration: 250
+			});
 			$(this).html("Volume: Unmuted");
 		}
 	});
-	$("#btnYT").on("click.frydance", function(e)
+
+	$("#btnYT").on("click.frydance", function (e)
 	{
 		e.preventDefault();
 		$("#ytVideo1").stop();
 		$("#ytVideo1").toggle(500);
 	});
-  getSongs().then(function()
-  {
-    $("#songSelector a").each(function(i, e)
-    {
-      $(this).data("id", (i+1));
-      $(this).children("span.title").html($(this).data("id").pad(2) + " - " + ($(this).data("nav") ? $(this).data("nav") : $(this).data("name")));
-      if (!isNaN($(this).data("listened")))
-        $(this).children("span.time").html(parseSeconds($(this).data("listened")));
-      else
-        $(this).children("span.time").html("0s");
-      $(this).off("click.frydance");
-      $(this).on("click.frydance", onSongSelectClicked);
-      $(this).contextmenu(onSongSelectContextMenu);
-    });
-  });
-	$("#videosToLoad video").each(function()
+
+	getSongs().finally(function ()
+	{
+		$("#songSelector a").each(function (i, e)
+		{
+			$(this).data("id", (i + 1));
+			$(this).children("span.title").html($(this).data("id").pad(2) + " - " + ($(this).data("nav") ? $(this).data("nav") : $(this).data("name")));
+			if (!isNaN($(this).data("listened")))
+				$(this).children("span.time").html(parseSeconds($(this).data("listened")));
+			else
+				$(this).children("span.time").html("0s");
+			$(this).off("click.frydance");
+			$(this).on("click.frydance", onSongSelectClicked);
+			$(this).contextmenu(onSongSelectContextMenu);
+		});
+	});
+
+	$("#videosToLoad video").each(function ()
 	{
 		var el = $(this);
-		console.log("Now loading video:",el.children("source").attr("src"));
+		console.log("Now loading video:", el.children("source").attr("src"));
 		$(this).off("error.frydance");
-		$(this).on("error.frydance", function(e)
+		$(this).on("error.frydance", function (e)
 		{
 			console.log(e);
 		});
 		$(this).off("loadeddata.frydance");
-		$(this).on("loadeddata.frydance", function(){videosLoaded++;console.log("loaded",el.children("source").attr("src"));if(videosLoaded>=videosToLoad&&window.YTLoaded===true)OnVideosLoaded(e);});
+		$(this).on("loadeddata.frydance", function () { videosLoaded++; console.log("loaded", el.children("source").attr("src")); if (videosLoaded >= videosToLoad && window.YTLoaded === true) OnVideosLoaded(e); });
 		$(this).attr("preload", "auto");
 	});
-	$("#btnLoop").on("click.frydance", function(e)
+
+	$("#btnLoop").on("click.frydance", function (e)
 	{
 		e.preventDefault();
 		currentLoopType += 1;
 		if (currentLoopType > LoopType.All)
 			currentLoopType = 0;
-		for (var i in LoopType)	
+		for (var i in LoopType)
 			if (LoopType[i] == currentLoopType) $(this).html("Loop: " + i);
 	});
-	$("#btnShuffle").on("click.frydance", function(e)
+	$("#btnShuffle").on("click.frydance", function (e)
 	{
 		e.preventDefault();
 		if (currentShuffleType == ShuffleType.On)
-			currentShuffleType = ShuffleType.Off;	
+			currentShuffleType = ShuffleType.Off;
 		else
 			currentShuffleType = ShuffleType.On;
-		for (var i in ShuffleType)	
+		for (var i in ShuffleType)
 			if (ShuffleType[i] == currentShuffleType) $(this).html("Shuffle: " + i);
 	});
 }
+
 function parseSeconds(seconds)
 {
 	seconds = Math.round(seconds);
@@ -568,6 +581,7 @@ function parseSeconds(seconds)
 		retStr = seconds + "s";
 	return retStr;
 }
+
 function UpdatePlayTime()
 {
 	var now = new Date();
@@ -581,14 +595,14 @@ function UpdatePlayTime()
 	ytStartTime = new Date();
 	lastVideo.data("listened", timeListened);
 	lastVideo.children("span.time").html(parseSeconds(lastVideo.data("listened")));
-	
-	$("#songSelector a").each(function(ei, el)
+
+	$("#songSelector a").each(function (ei, el)
 	{
 		if (typeof $(el).data("listened") !== "undefined")
 			$(el).children(".timespan").css("width", (($(el).data("listened") / totalTimeListened) * 100) + "%");
 	});
-	
 }
+
 function checkVideoTime()
 {
 	var start = $("#songSelector a.active").data("start");
@@ -597,30 +611,30 @@ function checkVideoTime()
 	{
 		if (currentLoopType == LoopType.One)
 			player.seekTo(start);
-    else if (currentLoopType == LoopType.All)
-    {
-      clearInterval(finalehWnd2);
-      clearInterval(yttWnd);
-      if (currentShuffleType == ShuffleType.On)
-      {
-        cIndex = Math.floor(Math.random() * $("#songSelector a").length);
-        if (cIndex >= $("#songSelector a").length)
-          cIndex = 0;
-        $("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
-      }
-      else
-      {
-        cIndex++;
-        if (cIndex >= $("#songSelector a").length)
-          cIndex = 0;
-        $("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
-      }
-    }
-    else
-    {
-      clearInterval(yttWnd);
-      player.stopVideo();
-    }
+		else if (currentLoopType == LoopType.All)
+		{
+			clearInterval(finalehWnd2);
+			clearInterval(yttWnd);
+			if (currentShuffleType == ShuffleType.On)
+			{
+				cIndex = Math.floor(Math.random() * $("#songSelector a").length);
+				if (cIndex >= $("#songSelector a").length)
+					cIndex = 0;
+				$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
+			}
+			else
+			{
+				cIndex++;
+				if (cIndex >= $("#songSelector a").length)
+					cIndex = 0;
+				$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
+			}
+		}
+		else
+		{
+			clearInterval(yttWnd);
+			player.stopVideo();
+		}
 		/*else if (currentLoopType == LoopType.All)
 		{
 			clearInterval(yttWnd);
@@ -630,12 +644,13 @@ function checkVideoTime()
 			$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
 		}*/
 	}
-  else if (player.getCurrentTime() < start)
-  {
-    player.seekTo(start);
-  }
+	else if (player.getCurrentTime() < start)
+	{
+		player.seekTo(start);
+	}
 }
 $(document).ready(OnDocumentReady);
+
 function OnYoutubeAPIReady(e)
 {
 	console.log("YouTube API ready.");
@@ -660,12 +675,12 @@ function OnYoutubeAPIReady(e)
 				}
 				else
 				{
-					$("#sldVolume").children(".slider-background").css("width", $("#sldVolume").data("volume")+"%");
-					$("#sldVolume").children(".slider-text").html($("#sldVolume").data("volume")+"%");
+					$("#sldVolume").children(".slider-background").css("width", $("#sldVolume").data("volume") + "%");
+					$("#sldVolume").children(".slider-text").html($("#sldVolume").data("volume") + "%");
 					player.setVolume($("#sldVolume").data("volume"));
 				}
 				window.YTLoaded = true;
-				if(videosLoaded>=videosToLoad&&window.YTLoaded===true)OnVideosLoaded(e);
+				if (videosLoaded >= videosToLoad && window.YTLoaded === true) OnVideosLoaded(e);
 			},
 			'onStateChange': function OnPlayerStateChanged(event)
 			{
@@ -692,50 +707,50 @@ function OnYoutubeAPIReady(e)
 					UpdatePlayTime();
 					if (currentLoopType == LoopType.One)
 						lastVideo.click();
-          else if (currentLoopType == LoopType.All)
-          {
-            console.log(currentShuffleType);
-            if (currentShuffleType == ShuffleType.On)
-            {
-              cIndex = Math.floor(Math.random() * $("#songSelector a").length);
-              if (cIndex >= $("#songSelector a").length)
-                cIndex = 0;
-              $("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
-            }
-            else
-            {
-              cIndex++;
-              if (cIndex >= $("#songSelector a").length)
-                cIndex = 0;
-              $("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
-            }
-          }
+					else if (currentLoopType == LoopType.All)
+					{
+						console.log(currentShuffleType);
+						if (currentShuffleType == ShuffleType.On)
+						{
+							cIndex = Math.floor(Math.random() * $("#songSelector a").length);
+							if (cIndex >= $("#songSelector a").length)
+								cIndex = 0;
+							$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
+						}
+						else
+						{
+							cIndex++;
+							if (cIndex >= $("#songSelector a").length)
+								cIndex = 0;
+							$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
+						}
+					}
 					//playYoutubeVideo("2xJWQPdG7jE");
 				}
 			},
-			'onError': function(event)
+			'onError': function (event)
 			{
 				console.log(event);
 				if (currentLoopType == LoopType.One)
-						lastVideo.click();
-          else if (currentLoopType == LoopType.All)
-          {
-            console.log(currentShuffleType);
-            if (currentShuffleType == ShuffleType.On)
-            {
-              cIndex = Math.floor(Math.random() * $("#songSelector a").length);
-              if (cIndex >= $("#songSelector a").length)
-                cIndex = 0;
-              $("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
-            }
-            else
-            {
-              cIndex++;
-              if (cIndex >= $("#songSelector a").length)
-                cIndex = 0;
-              $("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
-            }
-          }
+					lastVideo.click();
+				else if (currentLoopType == LoopType.All)
+				{
+					console.log(currentShuffleType);
+					if (currentShuffleType == ShuffleType.On)
+					{
+						cIndex = Math.floor(Math.random() * $("#songSelector a").length);
+						if (cIndex >= $("#songSelector a").length)
+							cIndex = 0;
+						$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
+					}
+					else
+					{
+						cIndex++;
+						if (cIndex >= $("#songSelector a").length)
+							cIndex = 0;
+						$("#songSelector a:eq(" + cIndex + ")").trigger("click", true);
+					}
+				}
 			}
 		}
 	});
@@ -743,44 +758,44 @@ function OnYoutubeAPIReady(e)
 
 function addSong(rowid, nav, name, url, start, end)
 {
-  var newA = $("<a><span class=\"title\"></span><span class=\"time\"></span><div class=\"timespan\"></div></a>");
-  newA.attr("href", url);
-  newA.data("rowid", rowid);
-  newA.data("nav", nav);
-  newA.data("name", name);
-  newA.data("start", start);
-  newA.data("end", end);
-  $("#songSelector").append(newA);
-  
-  $("#songSelector a").each(function(i, e)
-  {
-    $(this).data("id", (i+1));
-    $(this).children("span.title").html($(this).data("id").pad(2) + " - " + ($(this).data("nav") ? $(this).data("nav") : $(this).data("name")));
-    if (!isNaN($(this).data("listened")))
-      $(this).children("span.time").html(parseSeconds($(this).data("listened")));
-    else
-      $(this).children("span.time").html("0s");
-    $(this).off("click.frydance");
-    $(this).on("click.frydance", onSongSelectClicked);
-    $(this).contextmenu(onSongSelectContextMenu);
-  });
+	var newA = $("<a><span class=\"title\"></span><span class=\"time\"></span><div class=\"timespan\"></div></a>");
+	newA.attr("href", url);
+	newA.data("rowid", rowid);
+	newA.data("nav", nav);
+	newA.data("name", name);
+	newA.data("start", start);
+	newA.data("end", end);
+	$("#songSelector").append(newA);
+
+	$("#songSelector a").each(function (i, e)
+	{
+		$(this).data("id", (i + 1));
+		$(this).children("span.title").html($(this).data("id").pad(2) + " - " + ($(this).data("nav") ? $(this).data("nav") : $(this).data("name")));
+		if (!isNaN($(this).data("listened")))
+			$(this).children("span.time").html(parseSeconds($(this).data("listened")));
+		else
+			$(this).children("span.time").html("0s");
+		$(this).off("click.frydance");
+		$(this).on("click.frydance", onSongSelectClicked);
+		$(this).contextmenu(onSongSelectContextMenu);
+	});
 }
 
 function getSongs()
 {
-  return new Promise(function(resolve, reject)
-  {
-    $.get("/getSongs", function(data)
-    {
-      resolve();
-      var rows = JSON.parse(data);
-      for (var x in rows)
-      {
-        console.log(rows);
-        addSong(rows[x].rowid, rows[x].nav, rows[x].name, rows[x].url, rows[x].start, rows[x].end);
-      }
-    }).catch(reject);
-  });
+	return new Promise(function (resolve, reject)
+	{
+		$.get("/getSongs", function (data)
+		{
+			resolve();
+			var rows = JSON.parse(data);
+			for (var x in rows)
+			{
+				console.log(rows);
+				addSong(rows[x].rowid, rows[x].nav, rows[x].name, rows[x].url, rows[x].start, rows[x].end);
+			}
+		}).catch(reject);
+	});
 }
 
 function OnWindowReady(e)
